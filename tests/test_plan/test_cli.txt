@@ -1,0 +1,140 @@
+
+
+--unit test--
+
+function: add
+
+- starting state:
+  - add an item using the cli function
+
+- ending state:
+    - assert if db.add_card() is called with the item
+
+
+------------------------------------------
+function: version
+
+- starting state:
+  - input version using the cli function
+
+- ending state:
+    - assert if __version__ is printed 
+
+
+--------------------------------------------
+function: delete
+
+case 1
+- starting state:
+    - delete an item using the cli function
+
+- ending state:
+    - assert if db.delete_card is called with the item id
+
+
+
+--------------------------------------------
+function: list
+
+case 1
+- starting state:
+    - list an item using the cli function
+
+- ending state:
+    - assert if db.list_cards is called with the item
+
+case 2
+- starting state:
+    - list an item using the cli function
+
+- ending state:
+    - assert if the table format is the same as the expected one 
+
+
+--------------------------------------------
+function: update
+
+case 1
+- starting state:
+    - list an item using the cli function
+
+- ending state:
+    - assert if db.list_cards is called with the item
+
+
+
+
+
+--------------------------------------------
+function: start
+
+case 1
+- starting state:
+    - 'start' an id using the cli function
+
+- ending state:
+    - assert if db.start is called with the id
+
+
+
+
+--------------------------------------------
+function: finish
+
+case 1
+- starting state:
+    - 'finish' an id using the cli function
+
+- ending state:
+    - assert if db.finish is called with the id
+
+
+
+--------------------------------------------
+function: config
+
+case 1
+- starting state:
+    - enter config using the cli function
+
+- ending state:
+    - assert if the print result is the same as the expected
+
+
+--------------------------------------------
+function: count
+
+case 1
+- starting state:
+    - enter count using the cli function
+
+- ending state:
+    - assert if the print result is the same as the expected
+
+
+
+
+--------------------------------------------
+function: get_path
+
+case 1
+- starting state:
+    - 
+
+- ending state:
+    - assert if there is a get_path
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+

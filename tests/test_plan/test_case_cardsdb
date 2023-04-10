@@ -1,0 +1,250 @@
+
+
+fixture plan:
+- one empty database
+- one database with three items which are fully filled, with state = 'todo'
+
+
+
+
+--integration test--
+
+Function: add_card
+- Things that need to test: 
+1. missing summary exception
+2. if it can handle a card object without owner
+3. if the id return is the same as the input
+
+
+case 1
+- Starting state: 
+    empty db
+    add a Card object with three item filled
+
+- Ending state: 
+     if the id can be return
+
+case 2
+- Starting state: 
+    empty db
+    add a Card object without summary
+
+- Ending state: 
+    MissingSummary is raised
+
+case 3
+- Starting state:
+    empty db
+    a Card object without owner
+
+- Ending state:  
+   if the id can be return
+
+case 4 
+- Starting state:
+    a db with three item
+    add a Card object with three item filled
+
+- Ending state:  
+    if the id return is correct (the fourth object should have a id=4)
+
+
+------------------------------------------------------------
+Function: get_card
+- Things that need to test:
+1. if it can return the item with matching id
+2. if the error can be raise
+Remark: DB.read should be tested before get_card to make sure it work properly
+
+case 1
+- Starting state: 
+    a db with some items 
+
+- Ending state:
+    get the card item that match the id
+
+case 2
+- Starting state: 
+    a db with some items, input a id that does not match any items'
+
+- Ending state:
+    InvalidCardId is raise when the item id does not match any item id in the db
+
+------------------------------------------------------------
+Function: list_cards
+- Things that need to test:
+1. if it can return the matched card item with owner and state filled
+2. if it can return the matched card item with only owner is filled
+3. if it can return the matched card item with only state is filled
+4. if it can return all stored card item
+Remark: DB.read_all should be tested before get_card to make sure it work properly
+
+pre-condition: add some Card objects with three item filled
+
+
+case 1
+- Starting state: 
+    use owner as the argument
+
+- Ending state:
+    return the card item that match the owner name
+
+
+case 2
+- Starting state: 
+    use state as the argument
+
+- Ending state:
+    return the card item that match the state name
+
+
+case 3
+- Starting state: 
+    call the function without any argument
+
+- Ending state:
+    return all the stored card item
+
+
+
+------------------------------------------------------------
+Function: count
+- Things that need to test:
+1. if it can return the length of all stored items
+
+case 1
+- Starting state: 
+    an empty database
+
+- Ending state:
+    return length of the item
+
+
+case 2
+- Starting state: 
+    a database with three item
+
+- Ending state:
+    return length of the items
+
+------------------------------------------------------------
+Function: update_card
+- Things that need to test:
+1. if it can update the item
+2. if the exception can be raise if the card id is invalid
+
+case 1
+- Starting state: 
+    a database with three item (more than 0 item is fine)
+
+- Ending state:
+    update the owner and summary
+    use get_card to check the result
+
+case 2
+- Starting state: 
+     a database with three item (more than 0 item is fine)
+
+- Ending state:
+    use a wrong id to update the owner and summary, then the
+    InvalidCardId exception is raised
+
+------------------------------------------------------------
+Function: start
+- Things that need to test:
+1. if the state of a card item can be update to 'in prog'
+
+case 1
+- Starting state: 
+    a database with three item, at least one with state = 'todo' (more than 0 item is fine)
+
+- Ending state:
+    use start to change the state to 'in prog', then use the list_card to check it 
+
+------------------------------------------------------------
+Function: finish
+- Things that need to test:
+1. if the state of a card item can be update to 'done'
+
+case 1
+- Starting state: 
+    a database with three item, at least one with state = 'todo' (more than 0 item is fine)
+
+- Ending state:
+    use finish to change the state to 'done', then use the list_card to check it 
+
+------------------------------------------------------------
+Function: delete_card
+- Things that need to test:
+1. if card can be deleted
+2. if InvalidCardId can be raise if there is the key error
+
+
+case 1
+- Starting state: 
+    a database with three items
+
+- Ending state:
+    delete the item and then check it using get_card
+
+
+case 2
+- Starting state: 
+    a database with two item
+
+- Ending state:
+    delete the item using a wrong id, and then InvalidCardId is raised
+
+------------------------------------------------------------
+Function: delete_all
+- Things that need to test:
+1. if all the card items in the database is deleted
+
+case 1
+- Starting state: 
+    a database with three items
+
+- Ending state:
+    delete all items and then check it using list_card
+
+------------------------------------------------------------
+Function: close
+- Things that need to test:
+1. if the _db is closed 
+
+case 1
+- Starting state: 
+    a database with three items
+
+- Ending state:
+    close the _db and then check if card can be retrived using list_cards
+
+------------------------------------------------------------
+Function: path
+- Things that need to test:
+1. if it can return a path
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

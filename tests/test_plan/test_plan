@@ -1,0 +1,20 @@
+Test Completeness: 100%
+Test Environment: py3.10
+Scope: all the functions in db, cli, and api
+Quality Objective:
+- to ensure all the functions and cli work normally
+
+strategy:
+- unit test:
+    - test DB first to make sure the db functions work normally
+    - Card classmethod
+
+- integration test: 
+    - test api functions (both DB and CardsDB)
+
+- unit test:
+    - test cli functions to see if the output from cli is correct after the user input the command
+
+
+    
+

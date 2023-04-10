@@ -1,0 +1,28 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+      strategy:
+      matrix: 
+        python: ["3.10"]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with: 
+          python-version: ${{ matrix.python }}
+
+      - name: Install packages
+        run: pip install -r requirements.txt
+      - name: Install cards
+        run: pip install ./cards_proj/
+      - name: run all tests with coverage
+        run: pytest
+
+    
+    
