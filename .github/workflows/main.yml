@@ -5,22 +5,34 @@ on: [push, pull_request]
 jobs:
   build:
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
       strategy:
       matrix: 
         python: ["3.10"]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: check out repository code
+        uses: actions/checkout@v2
+
       - name: Setup Python
         uses: actions/setup-python@v2
         with: 
           python-version: ${{ matrix.python }}
 
-      - name: Install packages
+      - name: create or restore virtual env
+        uses: syphar/restore-virtualenv@v1
+        id: cache-virtualenv
+        with:
+          requirement_files: requirements.txt
+      
+      - name: install packages
         run: pip install -r requirements.txt
+        if: steps.cache-virtualenv.outputs.cache-hit != 'true'
+
+   
       - name: Install cards
         run: pip install ./cards_proj/
+
       - name: run all tests with coverage
         run: pytest
 
